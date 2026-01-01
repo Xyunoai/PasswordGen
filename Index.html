@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PasswordGen</title>
+  <meta name="description" content="Secure password generator. We do not sell, share, or collect your passwords.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <div class="privacy">
+      🔒 We do not sell, share, or collect your passwords.
+    </div>
+
+    <label class="label">Password length (max 150)</label>
+    <input 
+      type="number" 
+      id="lengthInput" 
+      min="1" 
+      max="150" 
+      value="16"
+    >
+
+    <div class="options">
+      <label>
+        <input type="checkbox" id="letters" checked>
+        Include Letters
+      </label>
+
+      <label>
+        <input type="checkbox" id="numbers" checked>
+        Include Numbers
+      </label>
+
+      <label>
+        <input type="checkbox" id="symbols" checked>
+        Include Symbols
+      </label>
+    </div>
+
+    <button onclick="generatePassword()">
+      GENERATE PASSWORD
+    </button>
+
+    <textarea 
+      id="output" 
+      readonly 
+      placeholder="Your generated password will appear here"
+    ></textarea>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
