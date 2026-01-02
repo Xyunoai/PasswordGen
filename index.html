@@ -1,41 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><">meta charset="UTF-8">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PasswordGen – Secure Password Generator</title>
-  <meta name="description" content="Generate secure passwords easily. We do not sell, share, or collect your passwords.">
-  
-  <!-- Link to your PWA manifest -->
+
+  <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
 
-  <!-- Theme color for browser -->
+  <!-- Meta description for SEO -->
+  <meta name="description" content="Secure password generator. We do not sell, share, or collect your passwords.">
+
+  <!-- Theme color for browser UI -->
   <meta name="theme-color" content="#1d8cf8">
 
-  <!-- Apple touch icon for iOS -->
+  <!-- Background color for splash screen -->
+  <meta name="background-color" content="#1d8cf8">
+
+  <!-- Apple touch icon -->
   <link rel="apple-touch-icon" href="icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" href="icon-192.png" type="image/png">
 
-  <!-- Optional: Your custom CSS for UI styling -->
-  <link rel="stylesheet" href="styles.css">
-  
-  <!-- Optional: Set the background color for splash screen on mobile -->
-  <meta name="background-color" content="#1d8cf8">
+  <!-- Custom CSS for your UI -->
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1d8cf8; /* Blue background */
+      color: #fff; /* White text */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
 
-</head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PasswordGen</title>
-<link rel="stylesheet" href="style.css">
+    h1 {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #1976d2;
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+      color: #000;
+    }
+
+    .options {
+      margin-bottom: 15px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: #2196f3;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #1976d2;
+    }
+
+    #passwordResult {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #0d47a1;
+      border-radius: 5px;
+      word-break: break-all;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      text-align: center;
+      max-width: 400px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
   <h1>PasswordGen</h1>
+  <p>Generate secure passwords easily. We do not sell, share, or collect your passwords.</p>
 
-  <label for="length">Password Length (max 150)</label>
-  <input type="number" id="length" placeholder="Enter length" max="150">
+  <input type="number" id="length" placeholder="Password length (max 150)" max="150">
 
   <div class="options">
     <label><input type="checkbox" id="letters" checked> Letters</label>
@@ -43,12 +105,43 @@
     <label><input type="checkbox" id="symbols" checked> Symbols</label>
   </div>
 
-  <button id="generate">Generate Password</button>
+  <button onclick="generatePassword()">Generate Password</button>
 
-  <textarea id="output" placeholder="Your password will appear here" readonly></textarea>
+  <div id="passwordResult"></div>
 
-  <p class="privacy">We do not sell, share, or take your passwords.</p>
-</div>
+  <footer>
+    &copy; 2026 PasswordGen. All rights reserved.<br>
+    We do not sell, share, or collect your passwords.
+  </footer>
 
+  <script>
+    function generatePassword() {
+      const lengthInput = document.getElementById('length').value;
+      let length = parseInt(lengthInput);
+      if(isNaN(length) || length < 1) length = 8;
+      if(length > 150) length = 150;
+
+      const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const numbers = "0123456789";
+      const symbols = "!@#$%^&*()_+-=[]{}|;:,.<>?";
+
+      let characters = "";
+      if(document.getElementById('letters').checked) characters += letters;
+      if(document.getElementById('numbers').checked) characters += numbers;
+      if(document.getElementById('symbols').checked) characters += symbols;
+
+      if(characters === "") {
+        alert("Please select at least one character type!");
+        return;
+      }
+
+      let password = "";
+      for(let i = 0; i < length; i++) {
+        password += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+
+      document.getElementById('passwordResult').textContent = password;
+    }
+  </script>
 </body>
 </html>
