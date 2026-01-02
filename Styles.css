@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: white;
+  background: #1d8cf8; /* BLUE BACKGROUND */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,6 +12,9 @@ body {
   width: 100%;
   max-width: 400px;
   padding: 20px;
+  background: white; /* WHITE CARD */
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 h1 {
@@ -39,7 +42,7 @@ button {
   width: 100%;
   padding: 14px;
   margin-top: 15px;
-  background: #1d8cf8;
+  background: #1565c0; /* DARKER BLUE BUTTON */
   color: white;
   border: none;
   border-radius: 8px;
@@ -47,8 +50,8 @@ button {
   cursor: pointer;
 }
 
-button:active {
-  opacity: 0.9;
+button:hover {
+  background: #0d47a1;
 }
 
 textarea {
