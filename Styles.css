@@ -1,89 +1,36 @@
-/* Body */
+<style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #1d8cf8; /* app-style blue background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  background: #1d8cf8; /* Blue background for the whole page */
+  color: #fff;          /* White text */
 }
 
-/* Container card */
-.container {
-  background-color: #ffffff;
-  width: 90%;
-  max-width: 400px;
-  padding: 25px 20px;
-  border-radius: 14px;
-  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
-}
-
-/* Header */
-.container h1 {
+header {
   text-align: center;
-  color: #1565c0; /* app-style blue title */
-  margin-bottom: 20px;
-}
-
-/* Labels and inputs */
-label {
+  font-size: 2rem;
   font-weight: bold;
-  color: #333;
-  display: block;
-  margin-top: 10px;
+  margin: 30px 0;
 }
 
-input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  margin-bottom: 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-}
-
-textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  height: 80px;
-  margin-top: 10px;
-  resize: none;
-  font-size: 16px;
-}
-
-/* Options checkboxes */
-.options label {
-  display: block;
-  font-weight: normal;
-  margin: 6px 0;
-}
-
-/* Button */
 button {
-  width: 100%;
-  padding: 12px;
-  background-color: #1565c0; /* app-style button blue */
-  color: white;
-  font-weight: bold;
+  background: #ffffff; /* White buttons */
+  color: #1d8cf8;      /* Blue text on buttons */
   border: none;
+  padding: 12px 25px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
-  margin-top: 12px;
+  font-weight: bold;
+  margin: 5px;
 }
 
 button:hover {
-  background-color: #0d47a1; /* darker on hover */
+  background: #e0e0e0; /* Slight gray hover effect */
 }
 
-/* Privacy text */
-.privacy {
-  font-size: 12px;
-  text-align: center;
-  color: #555;
-  margin-top: 15px;
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
 }
+</style>
