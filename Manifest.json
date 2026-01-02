@@ -2,10 +2,10 @@
   "name": "PasswordGen",
   "short_name": "PasswordGen",
   "description": "Secure password generator. We do not sell, share, or collect your passwords.",
-  "start_url": "/",
+  "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2196f3",
+  "background_color": "#1d8cf8",
+  "theme_color": "#1d8cf8",
   "icons": [
     {
       "src": "icon-192.png",
