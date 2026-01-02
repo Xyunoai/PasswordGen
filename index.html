@@ -1,41 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PasswordGen</title>
-
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css">
-</head>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #1d8cf8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
+    .card {
+      background: white;
+      width: 90%;
+      max-width: 400px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1565c0;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="number"],
+    textarea {
+      width: 100%;
+      margin-top: 6px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    textarea {
+      height: 80px;
+      resize: none;
+    }
+
+    .options {
+      margin: 15px 0;
+    }
+
+    .options label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: normal;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #1565c0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0d47a1;
+    }
+
+    .privacy {
+      font-size: 12px;
+      color: #555;
+      margin-top: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
 <body>
-  <div class="container">
+
+  <div class="card">
     <h1>PasswordGen</h1>
 
-    <input
-      type="number"
-      id="length"
-      placeholder="Password length (max 150)"
-      max="150"
-    />
+    <label>Password Length (max 150)</label>
+    <input type="number" id="length" value="16" min="1" max="150">
 
-    <label><input type="checkbox" id="letters" checked> Letters</label>
-    <label><input type="checkbox" id="numbers" checked> Numbers</label>
-    <label><input type="checkbox" id="symbols" checked> Symbols</label>
+    <div class="options">
+      <label><input type="checkbox" id="letters" checked> Letters</label>
+      <label><input type="checkbox" id="numbers" checked> Numbers</label>
+      <label><input type="checkbox" id="symbols"> Symbols</label>
+    </div>
 
     <button onclick="generatePassword()">Generate Password</button>
 
-    <textarea id="output" readonly></textarea>
+    <textarea id="result" readonly placeholder="Your password will appear here"></textarea>
 
-    <p class="privacy">We do not collect or share any data.</p>
+    <div class="privacy">
+      We do not sell, share, store, or track your passwords. All generation happens locally on your device.
+    </div>
   </div>
 
-  <script src="script.js"></script>
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("service-worker.js");
-    }
-  </script>
+<script>
+function generatePassword() {
+  let length = parseInt(document.getElementById("length").value);
+
+  if (length > 150) length = 150;
+  if (length < 1) length = 1;
+
+  const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const numbers = "0123456789";
+  const symbols = "!@#$%^&*()_+-=[]{}|;:,.<>?";
+
+  let chars = "";
+  if (document.getElementById("letters").checked) chars += letters;
+  if (document.getElementById("numbers").checked) chars += numbers;
+  if (document.getElementById("symbols").checked) chars += symbols;
+
+  if (chars === "") {
+    alert("Select at least one option.");
+    return;
+  }
+
+  let password = "";
+  for (let i = 0; i < length; i++) {
+    password += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+
+  document.getElementById("result").value = password;
+}
+</script>
+
 </body>
 </html>
