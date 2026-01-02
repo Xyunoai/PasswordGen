@@ -47,4 +47,99 @@
       margin-top: 6px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      font-size:
+      font-size: 16px;
+    }
+
+    .options {
+      margin-top: 12px;
+    }
+
+    .options label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 12px;
+      background-color: #1d4ed8;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background-color: #2563eb;
+    }
+
+    .output {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #f3f4f6;
+      word-break: break-all;
+      text-align: center;
+      font-family: monospace;
+      font-size: 15px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <h1>PasswordGen</h1>
+
+    <label>Password Length</label>
+    <input type="number" id="length" value="12" min="6" max="64">
+
+    <div class="options">
+      <label><input type="checkbox" id="uppercase" checked> Uppercase Letters</label>
+      <label><input type="checkbox" id="numbers" checked> Numbers</label>
+      <label><input type="checkbox" id="symbols"> Symbols</label>
+    </div>
+
+    <button onclick="generatePassword()">Generate Password</button>
+
+    <div class="output" id="output">Your password will appear here</div>
+
+    <footer>
+      © 2026 PasswordGen • No data collected
+    </footer>
+  </div>
+
+  <script>
+    function generatePassword() {
+      const length = document.getElementById("length").value;
+      const useUpper = document.getElementById("uppercase").checked;
+      const useNumbers = document.getElementById("numbers").checked;
+      const useSymbols = document.getElementById("symbols").checked;
+
+      let chars = "abcdefghijklmnopqrstuvwxyz";
+      if (useUpper) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      if (useNumbers) chars += "0123456789";
+      if (useSymbols) chars += "!@#$%^&*()_+-=";
+
+      let password = "";
+      for (let i = 0; i < length; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+
+      document.getElementById("output").textContent = password;
+    }
+  </script>
+</body>
+</html>
